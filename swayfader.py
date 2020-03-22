@@ -193,7 +193,8 @@ class Fader:
         self.active_win = e.container
 
     def on_window_floating(self, ipc, e):
-        if (c_id := e.container.id) not in self.floating_windows:
+        c_id = e.container.id
+        if c_id not in self.floating_windows:
             self.floating_windows.append(c_id)
 
             if self.active_win.id != e.container.id:

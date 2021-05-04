@@ -2,8 +2,8 @@ from i3ipc import Connection, Event
 from threading import Thread
 from time import sleep
 
-
-FRAME_T = 0.01  # time taken between each frame of fade
+# delay per frame
+FRAME_T = 0.01
 
 # transparency values
 CON_AC     = 1     # active window

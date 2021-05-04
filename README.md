@@ -1,9 +1,7 @@
 # Swayfader
-
 Adds fading between windows in Swaywm.
 
 ### Installation
-
 1. Download the `swayfader.py` file.
 2. Install `python3` and `python-pip` packages through pacman.
 3. Install the i3ipc module: `sudo python3 -m pip install i3ipc`

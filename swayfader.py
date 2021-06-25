@@ -39,6 +39,7 @@ class Fader:
         self.old_win          = None
         self.active_win       = None
 
+    def start(self):
         ipc = Connection()
         ipc.on(Event.WINDOW_FOCUS,    self.on_window_focus)
         ipc.on(Event.WINDOW_NEW,      self.on_window_new)
@@ -225,4 +226,5 @@ def change_opacity(win, trans):
 
 
 if __name__ == "__main__":
-    Fader()
+    f = Fader()
+    f.start()

@@ -92,8 +92,8 @@ class Fader:
 
     def fader(self):
         while self.fade_queue:
-            // TODO: iterate list reversed instead of copying each time
-            // i cant do it atm because wont be able to test (not using sway)
+            # TODO: iterate list reversed instead of copying each time
+            # i cant do it atm because wont be able to test (not using sway)
             for win_id in self.fade_queue.copy():
                 try:
                     f = self.fade_data[win_id]

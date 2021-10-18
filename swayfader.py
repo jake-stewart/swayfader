@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from i3ipc import Connection, Event
 from threading import Thread
 from time import sleep
@@ -90,6 +92,8 @@ class Fader:
 
     def fader(self):
         while self.fade_queue:
+            // TODO: iterate list reversed instead of copying each time
+            // i cant do it atm because wont be able to test (not using sway)
             for win_id in self.fade_queue.copy():
                 try:
                     f = self.fade_data[win_id]
@@ -198,7 +202,7 @@ class Fader:
         if c_id not in self.floating_windows:
             self.floating_windows.append(c_id)
 
-            if self.active_win.id != e.container.id:
+            if self.active_win.id != c_id:
                 change_opacity(e.container, FLOAT_INAC)
 
             else:
@@ -210,7 +214,7 @@ class Fader:
 
         else:
             self.floating_windows.remove(c_id)
-            if self.active_win.id != e.container.id:
+            if self.active_win.id != c_id:
                 change_opacity(e.container, CON_INAC)
 
             else:

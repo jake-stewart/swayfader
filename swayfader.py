@@ -3,32 +3,33 @@
 from i3ipc import Connection, Event
 from threading import Thread
 from time import sleep
+from os import getenv
 
 # delay per frame
-FRAME_T = 0.01
+FRAME_T = int(getenv("SWAYFADER_FRAME_T", 0.01))
 
 # transparency values
-CON_AC     = 1     # active window
-CON_INAC   = 0.7   # inactive window
-FLOAT_AC   = 1     # active floating window
-FLOAT_INAC = 0.95  # inactive floating window
-BOT_INAC   = 0.9   # bottom window
+CON_AC     = int(getenv("SWAYFADER_CON_AC", 1))        # active window
+CON_INAC   = int(getenv("SWAYFADER_CON_INAC", 0.7))    # inactive window
+FLOAT_AC   = int(getenv("SWAYFADER_FLOAT_AC", 1))      # active floating window
+FLOAT_INAC = int(getenv("SWAYFADER_FLOAT_INAC", 0.95)) # inactive floating window
+BOT_INAC   = int(getenv("SWAYFADER_BOT_INAC", 0.9))    # bottom window
 
 
 # fade durations
-FADE_TIME      = 0.2
-ALT_FADE_TIME  = 0.1
+FADE_TIME      = int(getenv("SWAYFADER_FADE_TIME", 0.2))
+ALT_FADE_TIME  = int(getenv("SWAYFADER_ALT_FADE_TIME", 0.1))
 
-CON_OUT        = FADE_TIME      # window fading out
-CON_IN         = 0.15           # window fading in
-FLOAT_OUT      = ALT_FADE_TIME  # floating window fading out
-FLOAT_IN       = ALT_FADE_TIME  # floating window fading in
-BOT_OUT        = ALT_FADE_TIME  # bottom window fading out
-BOT_IN         = ALT_FADE_TIME  # bottom window fading in
-BOT_SWITCH_IN  = FADE_TIME      # window becoming bottom window
-BOT_SWITCH_OUT = FADE_TIME      # bottom window becoming window
-FLOAT_BOT_OUT  = FADE_TIME      # floating window fading out from bottom
-FLOAT_BOT_IN   = FADE_TIME      # floating window fading in from bottom
+CON_OUT        = int(getenv("SWAYFADER_CON_OUT", FADE_TIME))        # window fading out
+CON_IN         = int(getenv("SWAYFADER_CON_IN", FADE_TIME-0.05))    # window fading in
+FLOAT_OUT      = int(getenv("SWAYFADER_FLOAT_OUT", ALT_FADE_TIME))  # floating window fading out
+FLOAT_IN       = int(getenv("SWAYFADER_FLOAT_IN", ALT_FADE_TIME))   # floating window fading in
+BOT_OUT        = int(getenv("SWAYFADER_BOT_OUT", ALT_FADE_TIME))    # bottom window fading out
+BOT_IN         = int(getenv("SWAYFADER_BOT_IN", ALT_FADE_TIME))     # bottom window fading in
+BOT_SWITCH_IN  = int(getenv("SWAYFADER_BOT_SWITCH_IN", FADE_TIME))  # window becoming bottom window
+BOT_SWITCH_OUT = int(getenv("SWAYFADER_BOT_SWITCH_OUT", FADE_TIME)) # bottom window becoming window
+FLOAT_BOT_OUT  = int(getenv("SWAYFADER_FLOAT_BOT_OUT", FADE_TIME))  # floating window fading out from bottom
+FLOAT_BOT_IN   = int(getenv("SWAYFADER_FLOAT_BOT_IN", FADE_TIME))   # floating window fading in from bottom
 
 
 class Fader:
